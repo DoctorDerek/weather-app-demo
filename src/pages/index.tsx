@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { CityWeather } from "@/src/components/city-weather"
+import { CityWeather } from "@/src/components/CityWeather"
 
 export default function IndexPage() {
   const [city, setCity] = useState<string | null>(null)
