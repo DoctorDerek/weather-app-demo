@@ -2,10 +2,13 @@
   "name": "nextjs-hello-world",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "next dev",
     "start": "next start",
-    "test": "jest"
+    "build": "next build",
+    "test": "jest test --collectCoverage",
+    "test:watch": "jest test --watch",
+    "test:watchAll": "jest test --watchAll",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@testing-library/react": "11.2.7",
