@@ -1,0 +1,7 @@
+{
+  "transform": {
+    "^.+\\.(ts|tsx)$": "babel-jest"
+  },
+  "testEnvironment": "jsdom",
+  "testPathIgnorePatterns": ["./.next/", "./node_modules/"]
+}
