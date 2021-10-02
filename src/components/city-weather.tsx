@@ -12,7 +12,7 @@ interface CityWeatherState {
 }
 
 export class CityWeather extends Component<CityWeatherProps, CityWeatherState> {
-  public constructor(props) {
+  public constructor(props: any) {
     super(props)
     this.state = {
       weatherResult: null,
