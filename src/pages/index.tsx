@@ -17,11 +17,11 @@ export default function IndexPage() {
         <span>Weather Search:</span>{" "}
         <input
           data-testid="weather-input"
-          className="ml-2 border px-2 py-1 border-black"
+          className="px-2 py-1 ml-2 border border-black"
           type="text"
           name="city"
         />
-        <button className="ml-2 text-sm border rounded-lg p-2" type="submit">
+        <button className="p-2 ml-2 text-sm border rounded-lg" type="submit">
           Submit
         </button>
       </form>
