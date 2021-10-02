@@ -164,6 +164,6 @@ module.exports = {
           ...colors.red,
         },
       },
-    }
+    },
   },
 }

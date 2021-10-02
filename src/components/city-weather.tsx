@@ -1,36 +1,36 @@
-import { Component } from "react";
+import { Component } from "react"
 
 // to get api key: https://openweathermap.org/appid
-const API_KEY = "<insert your api key here>";
+const API_KEY = "<insert your api key here>"
 
 interface CityWeatherProps {
-  city: string;
+  city: string
 }
 
 interface CityWeatherState {
-  weatherResult: any;
+  weatherResult: any
 }
 
 export class CityWeather extends Component<CityWeatherProps, CityWeatherState> {
   public constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      weatherResult: null
-    };
+      weatherResult: null,
+    }
   }
 
   public componentDidMount() {
-    const { city } = this.props;
+    const { city } = this.props
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
     )
       .then((r) => r.json())
-      .then((result) => this.setState({ weatherResult: result }));
+      .then((result) => this.setState({ weatherResult: result }))
   }
 
   public render() {
-    const { city } = this.props;
-    const { weatherResult } = this.state;
+    const { city } = this.props
+    const { weatherResult } = this.state
 
     return (
       <div>
@@ -40,10 +40,10 @@ export class CityWeather extends Component<CityWeatherProps, CityWeatherState> {
         </div>
         <div>Descripiton: {weatherResult.weather[0].description}</div>
       </div>
-    );
+    )
   }
 }
 
 function KtoF(tempKevlin: number) {
-  return ((tempKevlin - 273.15) * 9) / 5 + 32;
+  return ((tempKevlin - 273.15) * 9) / 5 + 32
 }

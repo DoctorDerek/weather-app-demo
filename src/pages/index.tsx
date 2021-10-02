@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { CityWeather } from "../components/city-weather";
+import { useState } from "react"
+import { CityWeather } from "../components/city-weather"
 
 export default function IndexPage() {
-  const [city, setCity] = useState<string | null>(null);
+  const [city, setCity] = useState<string | null>(null)
   return (
     <div className="py-2">
       <form
         className="flex items-center justify-center"
         onSubmit={(e) => {
-          e.preventDefault();
-          const formdata = new FormData(e.currentTarget);
-          setCity(formdata.get("city").toString());
+          e.preventDefault()
+          const formdata = new FormData(e.currentTarget)
+          setCity(formdata.get("city").toString())
         }}
       >
         <span>Weather Search:</span>{" "}
@@ -31,5 +31,5 @@ export default function IndexPage() {
         </div>
       )}
     </div>
-  );
+  )
 }
