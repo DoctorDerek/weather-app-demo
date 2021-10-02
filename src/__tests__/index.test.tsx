@@ -4,8 +4,10 @@ import { rest } from "msw"
 import { setupServer } from "msw/node"
 
 import App from "@/src/pages/index"
-import { render, screen } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import { render } from "@testing-library/react"
+
+//import { render, screen } from "@testing-library/react"
+//import userEvent from "@testing-library/user-event"
 
 const server = setupServer(
   rest.get("https://api.openweathermap.org/*", (req, res, ctx) => {
