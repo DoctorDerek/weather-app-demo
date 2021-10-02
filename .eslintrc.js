@@ -25,6 +25,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "react-app",
     "react-app/jest",
+    "next",
   ],
   rules: {
     "prettier/prettier": "error",
