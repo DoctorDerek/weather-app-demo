@@ -11,7 +11,7 @@ export default function IndexPage() {
         onSubmit={(e) => {
           e.preventDefault()
           const formdata = new FormData(e.currentTarget)
-          setCity(formdata.get("city").toString())
+          setCity(String(formdata.get("city")))
         }}
       >
         <span>Weather Search:</span>{" "}
