@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 import { CityWeather } from "../components/city-weather"
 
 export default function IndexPage() {
