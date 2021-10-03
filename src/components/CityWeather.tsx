@@ -20,8 +20,19 @@ export default function CityWeather({ city }: { city?: string }) {
   }, [city])
 
   if (!city) return null
+
+  // Display a loading message if we have a city but no weatherResult
   const Loading = () => <div>loading...</div>
   if (!weatherResult) return <Loading />
+
+  // Display an error message if we don't get a 200 HTTP OK response
+  const Error = () => (
+    <Card heading={`Error ${weatherResult?.cod}`}>
+      <div>{weatherResult?.message}</div>
+    </Card>
+  )
+  if (weatherResult.cod !== 200) return <Error />
+  if (!Array.isArray(weatherResult?.weather)) return <Error />
 
   const { icon, description } = weatherResult?.weather[0]
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png` // 4x size
@@ -42,22 +53,15 @@ export default function CityWeather({ city }: { city?: string }) {
       </div>
     )
   }
-  if (weatherResult.cod === 200)
-    return (
-      <Card heading={city}>
-        <div>Temperature: {temperature} °F</div>
-        <div className="grid w-24 h-24">
-          <div className="relative">
-            <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
-          </div>
-        </div>
-        <div>{description}</div>
-      </Card>
-    )
-
   return (
-    <Card heading={`Error ${weatherResult.cod}`}>
-      <div>{weatherResult.message}</div>
+    <Card heading={city}>
+      <div>Temperature: {temperature} °F</div>
+      <div className="grid w-24 h-24">
+        <div className="relative">
+          <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
+        </div>
+      </div>
+      <div>{description}</div>
     </Card>
   )
 }
