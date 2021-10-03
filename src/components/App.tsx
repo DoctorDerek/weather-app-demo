@@ -14,7 +14,7 @@ export default function App() {
           setCity(String(formdata.get("city")))
         }}
       >
-        <span>Weather Search:</span>{" "}
+        <h1 className="font-semibold">Weather Search:</h1>{" "}
         <input
           data-testid="weather-input"
           className="px-2 py-1 ml-2 border border-black"
