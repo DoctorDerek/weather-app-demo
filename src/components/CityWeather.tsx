@@ -39,7 +39,7 @@ export default class CityWeather extends Component<
     if (!city) return null
     if (!weatherResult) return null
 
-    if (weatherResult.cod !== 200)
+    if (weatherResult.cod === 200)
       return (
         <div>
           <h1>{city}</h1>
