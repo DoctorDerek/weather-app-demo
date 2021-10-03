@@ -1,8 +1,8 @@
-[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo)](https://weather-app-demo.vercel.app/?app=weather-app-demo) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/master/graph/badge.svg?token=7VDUW7TGZN)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=master)](https://travis-ci.com/DoctorDerek/weather-app-demo)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo)](https://weather-app-demo.vercel.app/?app=weather-app-demo) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/main/graph/badge.svg?token=bEqXKgUSSb)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://app.travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=main)](https://app.travis-ci.com/DoctorDerek/weather-app-demo)
 
 # 📆 Weather App Demo - Next.js 11 + React 17 + Tailwind CSS + 100% Test Coverage
 
-# ✅ Code Repaired by Dr. Derek Austin to Work and Match Design
+# ✅ Code Repaired to Work and Match Design by Dr. Derek Austin
 
 # 👀 View Production Build at https://weather-app-demo.vercel.app
 
