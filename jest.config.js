@@ -44,10 +44,7 @@ const jestConfig = {
   coveragePathIgnorePatterns: [...ignores, "src/(umd|cjs|esm)-entry.js$", "_"],
   // ignore "/src/pages/_*" because next-page-tester has a bug with Next v11
 
-  //transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-  transformIgnorePatterns: [
-    "[/\\\\]node_modules[/\\\\].+\\@material-ui\\core\\colors+.(js|jsx)$",
-  ], // have to manually transform the @material-ui/core/colors files
+  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
 
   coverageThreshold: {
     global: {
