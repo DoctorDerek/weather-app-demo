@@ -25,7 +25,7 @@ export default function CityWeather({ city }: { city?: string }) {
   if (!city) return null
 
   // Display a loading message if we have a city but no weatherResult
-  const Loading = () => <div>loading...</div>
+  const Loading = () => <Card heading="...loading" />
   if (!weatherResult) return <Loading />
 
   // Display an error message if we don't get a 200 HTTP OK response
