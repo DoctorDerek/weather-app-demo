@@ -4,7 +4,7 @@ import { Component } from "react"
 const API_KEY = process.env.OPEN_WEATHER_MAP_API_KEY
 
 interface CityWeatherProps {
-  city: string
+  city?: string
 }
 
 interface CityWeatherState {
@@ -24,16 +24,20 @@ export default class CityWeather extends Component<
 
   public componentDidMount() {
     const { city } = this.props
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-    )
-      .then((r) => r.json())
-      .then((result) => this.setState({ weatherResult: result }))
+    if (city) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+      )
+        .then((r) => r.json())
+        .then((result) => this.setState({ weatherResult: result }))
+    }
   }
 
   public render() {
     const { city } = this.props
     const { weatherResult } = this.state
+    if (!city) return null
+    if (!weatherResult) return null
 
     return (
       <div>
