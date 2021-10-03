@@ -53,12 +53,12 @@ export default function CityWeather({ city }: { city?: string }) {
       </div>
     )
   }
-  function Temperature({ children }: { children: React.ReactNode }) {
+  function Temperature({ degreesF }: { degreesF: string | number }) {
     return (
       <div className="text-xs">
         Temperature:{" "}
         <span className="text-3xl font-semibold tracking-tighter text-black">
-          {temperature} °F
+          {degreesF} °F
         </span>
       </div>
     )
@@ -71,7 +71,7 @@ export default function CityWeather({ city }: { city?: string }) {
         </div>
       </div>
       <div>{upperCaseFirstLetterOfEachWord(description)}</div>
-      <Temperature>{temperature}</Temperature>
+      <Temperature degreesF={temperature} />
     </Card>
   )
 }
