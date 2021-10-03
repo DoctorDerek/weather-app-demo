@@ -20,11 +20,13 @@ export default function CityWeather({ city }: { city?: string }) {
   }, [city])
 
   if (!city) return null
-  if (!weatherResult) return <div>loading...</div>
+  const Loading = () => <div>loading...</div>
+  if (!weatherResult) return <Loading />
 
-  const icon = weatherResult.weather[0].icon
-  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`
+  const { icon, description } = weatherResult?.weather[0]
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png` // 4x size
   // Reference: https://openweathermap.org/weather-conditions
+  const temperature = KtoF(weatherResult?.main?.temp)
 
   function Card({
     children,
@@ -43,13 +45,13 @@ export default function CityWeather({ city }: { city?: string }) {
   if (weatherResult.cod === 200)
     return (
       <Card heading={city}>
-        <div>Temperature: {KtoF(weatherResult.main.temp)} °F</div>
+        <div>Temperature: {temperature} °F</div>
         <div className="grid w-24 h-24">
           <div className="relative">
             <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
           </div>
         </div>
-        <div>{weatherResult.weather[0].description}</div>
+        <div>{description}</div>
       </Card>
     )
 
