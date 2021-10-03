@@ -24,14 +24,19 @@ export default function App() {
             setCity(String(formdata.get("city")))
           }}
         >
-          <h1 className="font-semibold">Weather Search:</h1>{" "}
+          <h1 className="text-lg font-semibold tracking-tight">
+            Weather Search:
+          </h1>
           <input
             data-testid="weather-input"
-            className="px-2 py-1 ml-2 border border-black"
+            className="w-40 h-10 p-2 ml-2 border border-gray-300 border-solid rounded-l-lg"
             type="text"
             name="city"
           />
-          <button className="p-2 ml-2 text-sm border rounded-lg" type="submit">
+          <button
+            className="h-10 p-2 text-sm font-bold text-white uppercase bg-[#4683c8] border border-gray-300 border-solid rounded-r-lg"
+            type="submit"
+          >
             Submit
           </button>
         </form>
