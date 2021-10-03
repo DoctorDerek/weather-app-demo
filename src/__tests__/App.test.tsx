@@ -39,8 +39,24 @@ test("it renders the <App>", () => {
   expect(screen.getByRole("button")).toBeVisible()
 })
 
-test("it shows weather results when clicking the button", async () => {
+test("it shows nothing when clicking the button for no city", async () => {
   renderApp()
+  userEvent.click(screen.getByRole("button"))
+  await waitFor(() => expect(screen.queryByText(/overcast/i)).toBeNull())
+  expect(screen.getByText(/clouds/i)).toBeNull()
+})
+
+test("it shows weather results when clicking the button for 'Memphis'", async () => {
+  renderApp()
+  userEvent.type(screen.getByRole("textbox"), "Memphis")
+  userEvent.click(screen.getByRole("button"))
+  await waitFor(() => expect(screen.getByText(/overcast/i)).toBeVisible())
+  expect(screen.getByText(/clouds/i)).toBeVisible()
+})
+
+test("it shows an error when clicking the button for 'FakeCity'", async () => {
+  renderApp()
+  userEvent.type(screen.getByRole("textbox"), "FakeCity")
   userEvent.click(screen.getByRole("button"))
   await waitFor(() => expect(screen.getByText(/overcast/i)).toBeVisible())
   expect(screen.getByText(/clouds/i)).toBeVisible()

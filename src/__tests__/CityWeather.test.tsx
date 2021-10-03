@@ -4,7 +4,7 @@ import { rest } from "msw"
 import { setupServer } from "msw/node"
 
 import CityWeather, { KtoF } from "@/src/components/CityWeather"
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 
 const currentWeatherConditions = "Overcast clouds"
 const currentTemperatureInKelvin = 295.372
@@ -56,11 +56,12 @@ test("<CityWeather> renders nothing with default props", () => {
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
 
-test("<CityWeather> renders correctly when prop city='Memphis'", () => {
+test("<CityWeather> renders correctly when prop city='Memphis'", async () => {
   const city = "Memphis"
   renderCityWeather(city)
   expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
-  expect(screen.getByText(/Temp/i)).toBeVisible() // Temperature
+  await waitFor(() => screen.getByText(/loading/i))
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
   expect(
     screen.getByText(new RegExp(currentWeatherConditions, "i"))
   ).toBeVisible()
