@@ -53,15 +53,25 @@ export default function CityWeather({ city }: { city?: string }) {
       </div>
     )
   }
+  function Temperature({ children }: { children: React.ReactNode }) {
+    return (
+      <div className="text-xs text-gray-600">
+        Temperature:{" "}
+        <span className="text-2xl font-semibold text-black">
+          {temperature} °F
+        </span>
+      </div>
+    )
+  }
   return (
     <Card heading={city}>
-      <div>Temperature: {temperature} °F</div>
       <div className="grid w-24 h-24">
         <div className="relative">
           <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
         </div>
       </div>
       <div>{description}</div>
+      <Temperature>{temperature}</Temperature>
     </Card>
   )
 }
