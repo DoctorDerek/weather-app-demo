@@ -36,11 +36,7 @@ export default function App() {
           </button>
         </form>
 
-        {city && (
-          <div className="mt-4">
-            <CityWeather city={city} />
-          </div>
-        )}
+        {city && <CityWeather city={city} />}
       </div>
       <BackgroundImage />
     </>
