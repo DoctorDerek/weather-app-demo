@@ -24,7 +24,7 @@ export default function App() {
             setCity(String(formdata.get("city")))
           }}
         >
-          <h1 className="text-lg font-semibold tracking-tight">
+          <h1 className="text-base font-semibold tracking-tight">
             Weather Search:
           </h1>
           <input
@@ -34,7 +34,7 @@ export default function App() {
             name="city"
           />
           <button
-            className="h-10 p-2 text-sm font-bold text-white uppercase bg-[#4683c8] border border-gray-300 border-solid rounded-r-lg"
+            className="h-10 p-2 text-xs font-bold text-white uppercase bg-[#4683c8] border border-[#4683c8] border-solid rounded-r-lg"
             type="submit"
           >
             Submit
