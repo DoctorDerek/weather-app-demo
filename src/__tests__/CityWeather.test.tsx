@@ -33,6 +33,7 @@ const server = setupServer(
             // temp in Kelvin
             temp: currentTemperatureInKelvin,
           },
+          name: city,
         })
       )
     }
