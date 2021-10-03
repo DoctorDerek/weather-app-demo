@@ -38,7 +38,7 @@ function renderCityWeather(city?: string) {
 
 test("<CityWeather> renders nothing with default props", async () => {
   renderCityWeather()
-  expect(screen.queryByText(/Temp/i)).not.toBeVisible() // Temperature
+  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
 
 test("<CityWeather> renders correctly when prop city='Memphis'", async () => {
