@@ -18,11 +18,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 2. ✅ Refactor <CityWeather> to a function component using React Hooks
 
-3. 🟩 Match the design
-
-   - A designer has provided a comp on how this app should look (see design.png)
-     - To match the design you may need to use different fields that are retuned from teh openweathermap API. For example, the weather condition three digit code can be [mapped to the icons here](https://openweathermap.org/weather-conditions)
-   - Tailwindcss is installed and configured for you
+3. 🟩 Match the design https://weather-app-demo-doctorderek.vercel.app/design.png
 
 4. 🟩 Improve web accessibility
 
