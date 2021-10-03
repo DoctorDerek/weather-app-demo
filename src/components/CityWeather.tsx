@@ -19,7 +19,7 @@ export default function CityWeather({ city }: { city?: string }) {
   }, [city])
 
   if (!city) return null
-  if (!weatherResult) return null
+  if (!weatherResult) return <div>loading...</div>
 
   if (weatherResult.cod === 200)
     return (
