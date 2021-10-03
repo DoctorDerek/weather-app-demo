@@ -16,7 +16,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 1. ✅ Fix the bug where the app crashes when trying to request the weather
 
-2. 🟩 Refactor <CityWeather> to a function component using React Hooks
+2. ✅ Refactor <CityWeather> to a function component using React Hooks
 
 3. 🟩 Match the design
 
@@ -46,11 +46,27 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 1. 🟩 Talk about your changes
 
-   - Write a short description about what was the underlying cause of the bug and how you fixed it
+   - The bug was caused by the classic JavaScript problem where trying to access properties of `null` or `undefined` throws an error.
+
+   - Avoiding that type of error, especially in production, is one of the main advantages of using TypeScript for static code analysis.
+
+   - In this case, the `weatherResult` was not properly typed, and there was no error handling for `404` errors (`"city not found"`).
+
+   - Before beginning work, I updated all dependencies and added multiple engineering standards, such as ESLint and Prettier.
+
+   - ESLint helped identify related errors, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
 
 2. 🟩 Talk about your changes
 
-   - For the refactor and other accompanying tasks, include any other thoughts, assumptions, or known compromises in how you approached the work.
+   - Acting like this was a "real" work environment with an "urgent" bugfix, I fixed the bug before refactoring to a function component.
+
+   - However, given that this was really a new feature, I would have preferred to refactor and make the code clearer before implementation.
+
+   - I also refactored the structure of the app significantly, including absolute paths (`@/src/**`), `eslint-plugin-tailwindcss`, and more.
+
+   - Even though I moved the API_KEY to `.env.local`, it is still exposed in `.env.test` and in query parameters via the use of a GET request.
+
+   - Ideally, the API_KEY secret would be protected by using a dummy variable in `.env.test` and using POST instead of GET to hit the API.
 
 ## Test Coverage Report - Jest & React Testing Library
 
@@ -66,9 +82,9 @@ Launches the test runner in the interactive watch mode.
 
 - `1.0.0` Existing codebase: Next.js 10 (TypeScript)
 - `1.0.1` First commit by Dr. Derek Austin: `chore: delete yarn.lock`
-- `1.1.0` Upgraded all dependencies and established best practices
+- `1.1.0` Upgraded all dependencies and established best practices like Husky
 - `1.2.0` Bugfix / Developed first working development build in Next.js
 - `1.3.0` Refactored `<CityWeather>` to function component with `useEffect`
-- `` Deployed working production build to Vercel using CI/CD and Husky
+- `1.4.0` Fixed tests, added loading message, and deployed to Vercel with CI/CD
 - `` Designed animated motion toggle to switch between icons and hours
 - `` Created dark mode for app using Tailwind CSS plus SVG animation toggle

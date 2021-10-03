@@ -1,46 +1,10 @@
-import "isomorphic-unfetch"
-
-import { rest } from "msw"
-import { setupServer } from "msw/node"
-
 import CityWeather, { KtoF } from "@/src/components/CityWeather"
-import { render, screen } from "@testing-library/react"
+import { server } from "@/src/utils/setup-tests"
+import { render, screen, waitFor } from "@testing-library/react"
 
 const currentWeatherConditions = "Overcast clouds"
 const currentTemperatureInKelvin = 295.372
 const currentTemperatureInFahrenheit = 72
-
-test("KtoF conversion function works correctly", () => {
-  expect(KtoF(currentTemperatureInKelvin)).toBe(currentTemperatureInFahrenheit)
-})
-
-// `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-const server = setupServer(
-  rest.get("https://api.openweathermap.org/*", (req, res, ctx) => {
-    const { city } = req.params
-    if (new RegExp("fake", "i").exec(city))
-      return res(
-        ctx.json({
-          cod: 404,
-          message: "city not found",
-        })
-      )
-    return res(
-      ctx.json({
-        weather: [
-          {
-            description: currentWeatherConditions,
-          },
-        ],
-        main: {
-          // temp in Kelvin
-          temp: currentTemperatureInKelvin,
-        },
-        name: city,
-      })
-    )
-  })
-)
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
@@ -51,25 +15,35 @@ function renderCityWeather(city?: string) {
   render(<CityWeather />)
 }
 
+test("KtoF conversion function works correctly", () => {
+  expect(KtoF(currentTemperatureInKelvin)).toBe(currentTemperatureInFahrenheit)
+})
+
 test("<CityWeather> renders nothing with default props", () => {
   renderCityWeather()
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
 
-test("<CityWeather> renders correctly when prop city='Memphis'", () => {
+test("<CityWeather> renders correctly with prop city='Memphis'", async () => {
   const city = "Memphis"
   renderCityWeather(city)
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
   expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
-  expect(screen.getByText(/Temp/i)).toBeVisible() // Temperature
   expect(
     screen.getByText(new RegExp(currentWeatherConditions, "i"))
   ).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}.*°`, "i"))
+  ).toBeVisible()
 })
 
-test("<CityWeather> renders 'not found' when prop city='FakeCity'", () => {
+test("<CityWeather> renders 'not found' with prop city='FakeCity'", async () => {
   const city = "FakeCity"
   renderCityWeather(city)
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
+  expect(screen.getByText(/error/i)).toBeVisible()
   expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
-  expect(screen.getByText(/not found/i)).toBeVisible()
 })

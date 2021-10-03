@@ -1,29 +1,11 @@
-import "isomorphic-unfetch"
-
-import { rest } from "msw"
-import { setupServer } from "msw/node"
-
 import App from "@/src/components/App"
+import { server } from "@/src/utils/setup-tests"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
-const server = setupServer(
-  rest.get("https://api.openweathermap.org/*", (req, res, ctx) => {
-    return res(
-      ctx.json({
-        weather: [
-          {
-            description: "Overcast clouds",
-          },
-        ],
-        main: {
-          // temp in Kelvin
-          temp: 295.372,
-        },
-      })
-    )
-  })
-)
+const currentWeatherConditions = "Overcast clouds"
+// const currentTemperatureInKelvin = 295.372
+const currentTemperatureInFahrenheit = 72
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
@@ -39,11 +21,37 @@ test("it renders the <App>", () => {
   expect(screen.getByRole("button")).toBeVisible()
 })
 
-test("it shows weather results when clicking the button", async () => {
+test("it shows nothing when clicking the button for no city", async () => {
   renderApp()
   userEvent.click(screen.getByRole("button"))
-  await waitFor(() => expect(screen.getByText(/overcast/i)).toBeVisible())
-  expect(screen.getByText(/clouds/i)).toBeVisible()
+  await waitFor(() => expect(screen.queryByText(/overcast/i)).toBeNull())
+  expect(screen.queryByText(/clouds/i)).toBeNull()
 })
 
-// todo: add more tests, maybe error handling?
+test("it shows weather results when clicking the button for 'Memphis'", async () => {
+  const city = "Memphis"
+  renderApp()
+  userEvent.type(screen.getByRole("textbox"), city)
+  userEvent.click(screen.getByRole("button"))
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
+  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(currentWeatherConditions, "i"))
+  ).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}.*°`, "i"))
+  ).toBeVisible()
+})
+
+test("it shows an error when clicking the button for 'FakeCity'", async () => {
+  const city = "FakeCity"
+  renderApp()
+  userEvent.type(screen.getByRole("textbox"), city)
+  userEvent.click(screen.getByRole("button"))
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
+  expect(screen.getByText(/error/i)).toBeVisible()
+  expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
+  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
+})

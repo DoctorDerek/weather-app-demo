@@ -1,5 +1,16 @@
 // Note: this file will run before any test file and will run on all tests.
+import "isomorphic-unfetch"
 import "@testing-library/jest-dom/extend-expect" // add better assertions
+
+import { rest } from "msw"
+import { setupServer } from "msw/node"
+
+import { loadEnvConfig } from "@next/env"
+
+// load environment variables from .env.test file via Next.js
+const projectDir = process.cwd()
+loadEnvConfig(projectDir)
+// Reference: https://nextjs.org/docs/basic-features/environment-variables#test-environment-variables
 
 // fix "Error: Uncaught [TypeError: window.matchMedia is not a function]",
 // which is caused by the package next-themes when the server-side tests run
@@ -16,3 +27,38 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: jest.fn(),
   })),
 })
+
+const currentWeatherConditions = "Overcast clouds"
+const currentTemperatureInKelvin = 295.372
+// const currentTemperatureInFahrenheit = 72
+
+// `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+export const server = setupServer(
+  rest.get("https://api.openweathermap.org/*", (req, res, ctx) => {
+    const city = req.url.searchParams.get("q")
+    if (city && new RegExp("fake", "i").exec(city)) {
+      // "FakeCity"
+      return res(
+        ctx.json({
+          cod: 404, // "NOT FOUND" https://http.cat/404
+          message: "city not found",
+        })
+      )
+    }
+    return res(
+      ctx.json({
+        weather: [
+          {
+            description: currentWeatherConditions,
+          },
+        ],
+        main: {
+          // temp in Kelvin
+          temp: currentTemperatureInKelvin,
+        },
+        name: city,
+        cod: 200, // "OK" https://http.cat/200
+      })
+    )
+  })
+)

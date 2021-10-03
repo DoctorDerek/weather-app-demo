@@ -19,15 +19,13 @@ export default function CityWeather({ city }: { city?: string }) {
   }, [city])
 
   if (!city) return null
-  if (!weatherResult) return null
+  if (!weatherResult) return <div>loading...</div>
 
   if (weatherResult.cod === 200)
     return (
       <div>
         <h1>{city}</h1>
-        <div>
-          Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
-        </div>
+        <div>Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} °F</div>
         <div>Description: {weatherResult.weather[0].description}</div>
       </div>
     )
