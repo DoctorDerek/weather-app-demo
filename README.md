@@ -67,7 +67,8 @@ Launches the test runner in the interactive watch mode.
 - `1.0.0` Existing codebase: Next.js 10 (TypeScript)
 - `1.0.1` First commit by Dr. Derek Austin: `chore: delete yarn.lock`
 - `1.1.0` Upgraded all dependencies and established best practices
-- `` Developed first working development build in Next.js
-- `` Deployed production build to Vercel using CI/CD and Husky
+- `1.2.0` Bugfix / Developed first working development build in Next.js
+- `1.3.0` Refactored `<CityWeather>` to function component with `useEffect`
+- `` Deployed working production build to Vercel using CI/CD and Husky
 - `` Designed animated motion toggle to switch between icons and hours
 - `` Created dark mode for app using Tailwind CSS plus SVG animation toggle

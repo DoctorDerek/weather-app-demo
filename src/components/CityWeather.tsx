@@ -1,61 +1,42 @@
-import { Component } from "react"
+import { useEffect, useState } from "react"
 
 // to get api key: https://openweathermap.org/appid
 const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY
 
-interface CityWeatherProps {
-  city?: string
-}
+export default function CityWeather({ city }: { city?: string }) {
+  const [weatherResult, setWeatherResult] = useState<CurrentWeatherData | null>(
+    null
+  )
 
-interface CityWeatherState {
-  weatherResult: CurrentWeatherData | null
-}
-
-export default class CityWeather extends Component<
-  CityWeatherProps,
-  CityWeatherState
-> {
-  public constructor(props: CityWeatherProps) {
-    super(props)
-    this.state = {
-      weatherResult: null,
-    }
-  }
-
-  public componentDidMount() {
-    const { city } = this.props
+  useEffect(() => {
     if (city) {
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
       )
         .then((r) => r.json())
-        .then((result) => this.setState({ weatherResult: result }))
+        .then((result) => setWeatherResult(result))
     }
-  }
+  }, [city])
 
-  public render() {
-    const { city } = this.props
-    const { weatherResult } = this.state
-    if (!city) return null
-    if (!weatherResult) return null
+  if (!city) return null
+  if (!weatherResult) return null
 
-    if (weatherResult.cod === 200)
-      return (
-        <div>
-          <h1>{city}</h1>
-          <div>
-            Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
-          </div>
-          <div>Description: {weatherResult.weather[0].description}</div>
-        </div>
-      )
+  if (weatherResult.cod === 200)
     return (
       <div>
-        <h1>Error {weatherResult.cod}</h1>
-        <div>{weatherResult.message}</div>
+        <h1>{city}</h1>
+        <div>
+          Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
+        </div>
+        <div>Description: {weatherResult.weather[0].description}</div>
       </div>
     )
-  }
+  return (
+    <div>
+      <h1>Error {weatherResult.cod}</h1>
+      <div>{weatherResult.message}</div>
+    </div>
+  )
 }
 
 export function KtoF(tempKelvin: number) {
