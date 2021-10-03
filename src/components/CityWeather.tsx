@@ -28,7 +28,7 @@ export default function CityWeather({ city }: { city?: string }) {
   // Display an error message if we don't get a 200 HTTP OK response
   const Error = () => (
     <Card heading={`Error ${weatherResult?.cod}`}>
-      <div>{weatherResult?.message}</div>
+      <div>{upperCaseFirstLetterOfEachWord(weatherResult?.message)}</div>
     </Card>
   )
   if (weatherResult.cod !== 200) return <Error />
@@ -70,10 +70,18 @@ export default function CityWeather({ city }: { city?: string }) {
           <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
         </div>
       </div>
-      <div>{description}</div>
+      <div>{upperCaseFirstLetterOfEachWord(description)}</div>
       <Temperature>{temperature}</Temperature>
     </Card>
   )
+}
+
+function upperCaseFirstLetterOfEachWord(string: string) {
+  if (!string) return ""
+  return string
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ")
 }
 
 export function KtoF(tempKelvin: number) {
