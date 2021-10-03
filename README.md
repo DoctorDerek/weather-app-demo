@@ -18,7 +18,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 2. ✅ Refactor <CityWeather> to a function component using React Hooks
 
-3. 🟩 Match the design https://weather-app-demo-doctorderek.vercel.app/design.png
+3. ✅ Match the design https://weather-app-demo-doctorderek.vercel.app/design.png
 
 4. 🟩 Improve web accessibility
 
@@ -40,7 +40,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 ## Discussion Section
 
-1. ✅ Talk about your changes
+1. ✅ Talk about your changes when fixing the "App crashes on submit" bug
 
    - The bug was caused by the classic JavaScript problem where trying to access properties of `null` or `undefined` throws an error.
 
@@ -48,11 +48,11 @@ Below you will find a complete feature set, discussion section, and technical jo
 
    - In this case, the `weatherResult` was not properly typed, and there was no error handling for `404` errors (`"city not found"`).
 
-   - Before beginning work, I updated all dependencies and added multiple engineering standards, such as ESLint and Prettier.
+   - I prefer building robust components with a variety of guard clauses, so I made the city prop optional in `<CityWeather>`.
 
-   - ESLint helped identify related errors, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
+   - I also identified errors with ESLint, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
 
-2. ✅ Talk about your changes
+2. ✅ Talk about your changes when refactoring the `<CityWeather>` component
 
    - Acting like this was a "real" work environment with an "urgent" bugfix, I fixed the bug before refactoring to a function component.
 
