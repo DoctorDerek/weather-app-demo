@@ -8,7 +8,7 @@ interface CityWeatherProps {
 }
 
 interface CityWeatherState {
-  weatherResult: any
+  weatherResult: CurrentWeatherData | null
 }
 
 export default class CityWeather extends Component<
