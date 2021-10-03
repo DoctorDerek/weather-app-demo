@@ -21,7 +21,7 @@ test("it shows nothing when clicking the button for no city", async () => {
   renderApp()
   userEvent.click(screen.getByRole("button"))
   await waitFor(() => expect(screen.queryByText(/overcast/i)).toBeNull())
-  expect(screen.getByText(/clouds/i)).toBeNull()
+  expect(screen.queryByText(/clouds/i)).toBeNull()
 })
 
 test("it shows weather results when clicking the button for 'Memphis'", async () => {
