@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <>
-      <div className="relative z-10 py-2">
+      <div className="relative z-10 pt-8">
         <form
           className="flex items-center justify-center"
           onSubmit={(e) => {
