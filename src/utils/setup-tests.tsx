@@ -28,14 +28,16 @@ const currentTemperatureInKelvin = 295.372
 // `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
 export const server = setupServer(
   rest.get("https://api.openweathermap.org/*", (req, res, ctx) => {
-    const { city } = req.params
-    if (new RegExp("fake", "i").exec(city))
+    const city = req.url.searchParams.get("q")
+    if (city && new RegExp("fake", "i").exec(city)) {
+      // "FakeCity"
       return res(
         ctx.json({
           cod: 404, // "NOT FOUND" https://http.cat/404
           message: "city not found",
         })
       )
+    }
     return res(
       ctx.json({
         weather: [
