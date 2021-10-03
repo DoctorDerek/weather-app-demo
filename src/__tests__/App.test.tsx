@@ -3,6 +3,10 @@ import { server } from "@/src/utils/setup-tests"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
+const currentWeatherConditions = "Overcast clouds"
+// const currentTemperatureInKelvin = 295.372
+const currentTemperatureInFahrenheit = 72
+
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
@@ -25,19 +29,29 @@ test("it shows nothing when clicking the button for no city", async () => {
 })
 
 test("it shows weather results when clicking the button for 'Memphis'", async () => {
+  const city = "Memphis"
   renderApp()
-  userEvent.type(screen.getByRole("textbox"), "Memphis")
+  userEvent.type(screen.getByRole("textbox"), city)
   userEvent.click(screen.getByRole("button"))
-  await waitFor(() => expect(screen.getByText(/overcast/i)).toBeVisible())
-  expect(screen.getByText(/clouds/i)).toBeVisible()
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
+  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(currentWeatherConditions, "i"))
+  ).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}°`, "i"))
+  ).toBeVisible()
 })
 
 test("it shows an error when clicking the button for 'FakeCity'", async () => {
+  const city = "FakeCity"
   renderApp()
-  userEvent.type(screen.getByRole("textbox"), "FakeCity")
+  userEvent.type(screen.getByRole("textbox"), city)
   userEvent.click(screen.getByRole("button"))
-  await waitFor(() => expect(screen.getByText(/overcast/i)).toBeVisible())
-  expect(screen.getByText(/clouds/i)).toBeVisible()
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
+  expect(screen.getByText(/error/i)).toBeVisible()
+  expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
+  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
-
-// todo: add more tests, maybe error handling?

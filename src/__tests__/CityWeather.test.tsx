@@ -33,12 +33,16 @@ test("<CityWeather> renders correctly when prop city='Memphis'", async () => {
   expect(
     screen.getByText(new RegExp(currentWeatherConditions, "i"))
   ).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}°`, "i"))
+  ).toBeVisible()
 })
 
-test("<CityWeather> renders 'not found' when prop city='FakeCity'", () => {
+test("<CityWeather> renders 'not found' when prop city='FakeCity'", async () => {
   const city = "FakeCity"
   renderCityWeather(city)
   expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
-  expect(screen.getByText(/not found/i)).toBeVisible()
+  await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
+  expect(screen.getByText(/error/i)).toBeVisible()
 })
