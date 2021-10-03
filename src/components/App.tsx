@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { CityWeather } from "@/src/components/CityWeather"
+import CityWeather from "@/src/components/CityWeather"
 
 export default function App() {
   const [city, setCity] = useState<string | null>(null)
