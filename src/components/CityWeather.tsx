@@ -26,32 +26,37 @@ export default function CityWeather({ city }: { city?: string }) {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`
   // Reference: https://openweathermap.org/weather-conditions
 
-  function Wrapper({ children }: { children: React.ReactNode }) {
+  function Card({
+    children,
+    heading,
+  }: {
+    children: React.ReactNode
+    heading: string
+  }) {
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-64 p-4 mx-auto bg-white rounded-lg shadow-md drop-shadow-md">
+        <h2 className="font-bold text-gray-600 uppercase">{heading}</h2>
         {children}
       </div>
     )
   }
   if (weatherResult.cod === 200)
     return (
-      <Wrapper>
-        <h1>{city}</h1>
+      <Card heading={city}>
         <div>Temperature: {KtoF(weatherResult.main.temp)} °F</div>
         <div className="grid w-24 h-24">
           <div className="relative">
             <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
           </div>
         </div>
-        <div>Description: {weatherResult.weather[0].description}</div>
-      </Wrapper>
+        <div>{weatherResult.weather[0].description}</div>
+      </Card>
     )
 
   return (
-    <Wrapper>
-      <h1>Error {weatherResult.cod}</h1>
+    <Card heading={`Error ${weatherResult.cod}`}>
       <div>{weatherResult.message}</div>
-    </Wrapper>
+    </Card>
   )
 }
 
