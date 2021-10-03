@@ -30,7 +30,7 @@ export default function CityWeather({ city }: { city?: string }) {
     return (
       <div>
         <h1>{city}</h1>
-        <div>Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} °F</div>
+        <div>Temperature: {KtoF(weatherResult.main.temp)} °F</div>
         <div className="grid w-24 h-24">
           <div className="relative">
             <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
