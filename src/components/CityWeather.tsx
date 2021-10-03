@@ -1,3 +1,4 @@
+import ImageFixed from "next/image"
 import { useEffect, useState } from "react"
 
 // to get api key: https://openweathermap.org/appid
@@ -21,11 +22,20 @@ export default function CityWeather({ city }: { city?: string }) {
   if (!city) return null
   if (!weatherResult) return <div>loading...</div>
 
+  const icon = weatherResult.weather[0].icon
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`
+  // Reference: https://openweathermap.org/weather-conditions
+
   if (weatherResult.cod === 200)
     return (
       <div>
         <h1>{city}</h1>
         <div>Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} °F</div>
+        <div className="grid w-24 h-24">
+          <div className="relative">
+            <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
+          </div>
+        </div>
         <div>Description: {weatherResult.weather[0].description}</div>
       </div>
     )
