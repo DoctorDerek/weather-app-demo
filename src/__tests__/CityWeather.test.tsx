@@ -24,12 +24,12 @@ test("<CityWeather> renders nothing with default props", () => {
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
 
-test("<CityWeather> renders correctly when prop city='Memphis'", async () => {
+test("<CityWeather> renders correctly with prop city='Memphis'", async () => {
   const city = "Memphis"
   renderCityWeather(city)
-  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
-  await waitFor(() => screen.getByText(/loading/i))
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
   await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
+  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
   expect(
     screen.getByText(new RegExp(currentWeatherConditions, "i"))
   ).toBeVisible()
@@ -38,11 +38,12 @@ test("<CityWeather> renders correctly when prop city='Memphis'", async () => {
   ).toBeVisible()
 })
 
-test("<CityWeather> renders 'not found' when prop city='FakeCity'", async () => {
+test("<CityWeather> renders 'not found' with prop city='FakeCity'", async () => {
   const city = "FakeCity"
   renderCityWeather(city)
-  expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
-  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
   await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
   expect(screen.getByText(/error/i)).toBeVisible()
+  expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
+  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
