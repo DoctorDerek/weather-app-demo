@@ -1,6 +1,6 @@
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo)](https://weather-app-demo.vercel.app/?app=weather-app-demo) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/master/graph/badge.svg?token=7VDUW7TGZN)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=master)](https://travis-ci.com/DoctorDerek/weather-app-demo)
 
-# 📆 Weather App Demo - Next.js 11 + React 17 + Tailwind CSS
+# 📆 Weather App Demo - Next.js 11 + React 17 + Tailwind CSS + 100% Test Coverage
 
 # ✅ Code Repaired by Dr. Derek Austin to Work and Match Design
 
@@ -39,12 +39,12 @@ Below you will find a complete feature set, discussion section, and technical jo
    - Prettier, ESLint, Husky (Git Hooks), `tsconfig.json`, TypeScript Import Sorter, `.gitattributes`
 4. ✅ Crafted unit tests for new code features (TDD / Test Driven Development)
    - Jest + React Testing Library with React Test Renderer
-5. 🟩 Wrote unit testing for existing code (16% ➡ 100% test coverage)
+5. ✅ Wrote unit testing for existing code (16% ➡ 100% test coverage)
 6. 🟩 Developed mobile-first, responsive UX design with Tailwind CSS
 
 ## Discussion Section
 
-1. 🟩 Talk about your changes
+1. ✅ Talk about your changes
 
    - The bug was caused by the classic JavaScript problem where trying to access properties of `null` or `undefined` throws an error.
 
@@ -56,7 +56,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
    - ESLint helped identify related errors, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
 
-2. 🟩 Talk about your changes
+2. ✅ Talk about your changes
 
    - Acting like this was a "real" work environment with an "urgent" bugfix, I fixed the bug before refactoring to a function component.
 
@@ -86,5 +86,6 @@ Launches the test runner in the interactive watch mode.
 - `1.2.0` Bugfix / Developed first working development build in Next.js
 - `1.3.0` Refactored `<CityWeather>` to function component with `useEffect`
 - `1.4.0` Fixed tests, added loading message, and deployed to Vercel with CI/CD
+- `1.4.1` Reached 100% test coverage by adding `next-page-tester` to test `/`
 - `` Designed animated motion toggle to switch between icons and hours
 - `` Created dark mode for app using Tailwind CSS plus SVG animation toggle
