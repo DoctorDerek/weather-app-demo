@@ -1,7 +1,11 @@
-import "isomorphic-unfetch"
+import "isomorphic-unfetch" // helper to allow direct testing of fetch requests
 
 import CityWeather from "@/src/components/CityWeather"
-import { render, screen } from "@testing-library/react"
+import { loadEnvConfig } from "@next/env"
+import { render, screen, waitFor } from "@testing-library/react"
+
+beforeAll(() => loadEnvConfig(process.cwd()))
+// load .env.test to get API_KEY for live data tests
 
 function renderCityWeatherLiveData(city?: string) {
   if (city) return render(<CityWeather city={city} />)
@@ -13,17 +17,21 @@ test("<CityWeather> renders nothing with default props with live data", () => {
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
 
-test("<CityWeather> renders correctly when prop city='Memphis' with live data", () => {
+test("<CityWeather> renders correctly with prop city='Memphis' with live data", async () => {
   const city = "Memphis"
   renderCityWeatherLiveData(city)
-  expect(screen.queryByText(new RegExp(city, "i"))).toBeVisible()
-  expect(screen.queryByText(/Temp/i)).toBeVisible() // Temperature
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
+  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
+  expect(screen.getByText(new RegExp("°", "i"))).toBeVisible()
 })
 
-test("<CityWeather> renders nothing when prop city='FakeCity' with live data", () => {
+test("<CityWeather> renders 'not found' with prop city='FakeCity' with live data", async () => {
   const city = "FakeCity"
   renderCityWeatherLiveData(city)
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
+  expect(screen.getByText(/error/i)).toBeVisible()
   expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
-  expect(screen.getByText(/not found/i)).toBeVisible()
 })

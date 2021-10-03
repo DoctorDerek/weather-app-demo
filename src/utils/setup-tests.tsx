@@ -5,6 +5,13 @@ import "@testing-library/jest-dom/extend-expect" // add better assertions
 import { rest } from "msw"
 import { setupServer } from "msw/node"
 
+import { loadEnvConfig } from "@next/env"
+
+// load environment variables from .env.test file via Next.js
+const projectDir = process.cwd()
+loadEnvConfig(projectDir)
+// Reference: https://nextjs.org/docs/basic-features/environment-variables#test-environment-variables
+
 // fix "Error: Uncaught [TypeError: window.matchMedia is not a function]",
 // which is caused by the package next-themes when the server-side tests run
 Object.defineProperty(window, "matchMedia", {
