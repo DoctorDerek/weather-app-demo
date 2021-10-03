@@ -83,5 +83,6 @@ Launches the test runner in the interactive watch mode.
 - `1.3.0` Refactored `<CityWeather>` to function component with `useEffect`
 - `1.4.0` Fixed tests, added loading message, and deployed to Vercel with CI/CD
 - `1.4.1` Reached 100% test coverage by adding `next-page-tester` to test `/`
+- `1.5.0` Implemented design document and developed UX for mobile experience
 - `` Designed animated motion toggle to switch between icons and hours
 - `` Created dark mode for app using Tailwind CSS plus SVG animation toggle
