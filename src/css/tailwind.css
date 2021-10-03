@@ -14,3 +14,8 @@ https://uxdesign.cc/create-better-accessible-focus-effects-75a3de27b8ba
   border-color: transparent !important;
   border-radius: 3px;
 }
+
+html,
+body {
+  scroll-behavior: smooth;
+}
