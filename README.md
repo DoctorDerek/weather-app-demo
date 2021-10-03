@@ -14,7 +14,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 ## Required Features
 
-1. 🟩 Fix the bug where the app crashes when trying to request the weather
+1. ✅ Fix the bug where the app crashes when trying to request the weather
 
 2. 🟩 Refactor <CityWeather> to a function component using React Hooks
 
@@ -29,16 +29,15 @@ Below you will find a complete feature set, discussion section, and technical jo
    - Ensure that clicking on the label "Weather Search" puts focus into the text-input.
    - Make sure any loading states are correctly announced to a screen reader
 
-5. 🟩 Make the tests better
-   - There was a test written for this feature but it clearly didn't catch the bug, make the test better (you can open a new terminal in the bottom right of code sandbox and `yarn test`)
+5. ✅ Make the tests better
 
 ## Additional Features
 
-1. 🟩 Deployed production build of Next.js `11.0.2@latest` with CI/CD
-2. 🟩 Upgraded React `v17.0.2`
+1. ✅ Deployed production build of Next.js to Vercel with CI/CD
+2. ✅ Upgraded Next.js to `@latest` (`v11.1.2`) and all other dependencies
 3. ✅ Established engineering best practices:
    - Prettier, ESLint, Husky (Git Hooks), `tsconfig.json`, TypeScript Import Sorter, `.gitattributes`
-4. 🟩 Crafted unit tests for new code features (TDD / Test Driven Development)
+4. ✅ Crafted unit tests for new code features (TDD / Test Driven Development)
    - Jest + React Testing Library with React Test Renderer
 5. 🟩 Wrote unit testing for existing code (16% ➡ 100% test coverage)
 6. 🟩 Developed mobile-first, responsive UX design with Tailwind CSS
@@ -50,6 +49,7 @@ Below you will find a complete feature set, discussion section, and technical jo
    - Write a short description about what was the underlying cause of the bug and how you fixed it
 
 2. 🟩 Talk about your changes
+
    - For the refactor and other accompanying tasks, include any other thoughts, assumptions, or known compromises in how you approached the work.
 
 ## Test Coverage Report - Jest & React Testing Library
