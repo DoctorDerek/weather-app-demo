@@ -9,16 +9,19 @@ export default function Card({
 }) {
   const useSmallFont = heading.length >= 10 // "MEMPHIS" vs "PUERTO MORELOS"
   return (
-    <div className="flex flex-col items-center justify-center w-48 p-4 mx-auto mt-12 text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
-      <h2
-        className={classNames(
-          useSmallFont ? "text-base" : "text-xl",
-          "font-bold text-gray-600 uppercase"
-        )}
-      >
-        {heading}
-      </h2>
-      {children && children}
+    <div className="flex flex-col items-center justify-center">
+      {/* take advantage of flex-shrink to generate auto-width <Card> */}
+      <div className="flex flex-col items-center justify-center p-4 mt-12 text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
+        <h2
+          className={classNames(
+            useSmallFont ? "text-base" : "text-xl",
+            "font-bold text-gray-600 uppercase"
+          )}
+        >
+          {heading}
+        </h2>
+        {children && children}
+      </div>
     </div>
   )
 }
