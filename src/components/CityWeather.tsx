@@ -15,7 +15,7 @@ export default class CityWeather extends Component<
   CityWeatherProps,
   CityWeatherState
 > {
-  public constructor(props: any) {
+  public constructor(props: CityWeatherProps) {
     super(props)
     this.state = {
       weatherResult: null,
