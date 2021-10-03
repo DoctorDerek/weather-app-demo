@@ -45,7 +45,7 @@ export default class CityWeather extends Component<
         <div>
           Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
         </div>
-        <div>Descripiton: {weatherResult.weather[0].description}</div>
+        <div>Description: {weatherResult.weather[0].description}</div>
       </div>
     )
   }
