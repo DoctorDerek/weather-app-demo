@@ -52,5 +52,5 @@ export default class CityWeather extends Component<
 }
 
 export function KtoF(tempKelvin: number) {
-  return ((tempKelvin - 273.15) * 9) / 5 + 32
+  return Math.round(((tempKelvin - 273.15) * 9) / 5 + 32)
 }
