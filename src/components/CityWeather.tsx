@@ -26,9 +26,16 @@ export default function CityWeather({ city }: { city?: string }) {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`
   // Reference: https://openweathermap.org/weather-conditions
 
+  function Wrapper({ children }: { children: React.ReactNode }) {
+    return (
+      <div className="flex flex-col items-center justify-center">
+        {children}
+      </div>
+    )
+  }
   if (weatherResult.cod === 200)
     return (
-      <div>
+      <Wrapper>
         <h1>{city}</h1>
         <div>Temperature: {KtoF(weatherResult.main.temp)} °F</div>
         <div className="grid w-24 h-24">
@@ -37,13 +44,14 @@ export default function CityWeather({ city }: { city?: string }) {
           </div>
         </div>
         <div>Description: {weatherResult.weather[0].description}</div>
-      </div>
+      </Wrapper>
     )
+
   return (
-    <div>
+    <Wrapper>
       <h1>Error {weatherResult.cod}</h1>
       <div>{weatherResult.message}</div>
-    </div>
+    </Wrapper>
   )
 }
 
