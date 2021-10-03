@@ -55,7 +55,7 @@ export default function CityWeather({ city }: { city?: string }) {
   )
 }
 
-function upperCaseFirstLetterOfEachWord(string?: string) {
+export function upperCaseFirstLetterOfEachWord(string?: string) {
   if (!string) return ""
   return string
     .split(" ")
