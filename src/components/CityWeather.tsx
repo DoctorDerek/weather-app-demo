@@ -44,7 +44,7 @@ export default function CityWeather({ city }: { city?: string }) {
 
   return (
     <Card heading={city}>
-      <div className="grid w-24 h-24">
+      <div className="grid w-20 h-20">
         <div className="relative">
           <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
         </div>
