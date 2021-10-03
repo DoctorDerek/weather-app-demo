@@ -39,13 +39,20 @@ export default class CityWeather extends Component<
     if (!city) return null
     if (!weatherResult) return null
 
+    if (weatherResult.cod !== 200)
+      return (
+        <div>
+          <h1>{city}</h1>
+          <div>
+            Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
+          </div>
+          <div>Description: {weatherResult.weather[0].description}</div>
+        </div>
+      )
     return (
       <div>
-        <h1>{city}</h1>
-        <div>
-          Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
-        </div>
-        <div>Description: {weatherResult.weather[0].description}</div>
+        <h1>Error {weatherResult.cod}</h1>
+        <div>{weatherResult.message}</div>
       </div>
     )
   }
