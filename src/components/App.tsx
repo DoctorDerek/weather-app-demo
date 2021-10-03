@@ -27,7 +27,7 @@ export default function App() {
           <h1 className="pb-2 text-2xl font-semibold tracking-tight sm:text-base sm:pb-0">
             Weather Search:
           </h1>
-          <div>
+          <div className="flex flex-wrap items-center justify-center">
             {/* wrapper div to avoid flex-wrap on mobile */}
             <input
               data-testid="weather-input"
@@ -36,7 +36,7 @@ export default function App() {
               name="city"
             />
             <button
-              className="h-10 p-2 text-xs font-bold text-white uppercase bg-[#4683c8] border border-[#4683c8] border-solid rounded-r-lg"
+              className="h-10 p-2 text-xs font-bold text-white uppercase bg-[#4683c8] rounded-r-lg"
               type="submit"
             >
               Submit
