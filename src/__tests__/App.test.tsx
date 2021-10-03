@@ -31,7 +31,7 @@ afterAll(() => server.close())
 
 const renderApp = () => render(<App />)
 
-test("it renders the <App>", async () => {
+test("it renders the <App>", () => {
   renderApp()
   expect(screen.getByText(/Weather/i)).toBeVisible()
   expect(screen.getByText(/Search/i)).toBeVisible()
