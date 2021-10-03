@@ -42,13 +42,19 @@ export default function CityWeather({ city }: { city?: string }) {
   // Reference: https://openweathermap.org/weather-conditions
   const temperature = KtoF(weatherResult?.main?.temp)
 
-  return (
-    <Card heading={city}>
+  function WeatherIcon() {
+    return (
       <div className="grid w-20 h-20">
         <div className="relative">
           <ImageFixed src={iconUrl} layout="fill" className="object-cover" />
         </div>
       </div>
+    )
+  }
+
+  return (
+    <Card heading={city}>
+      <WeatherIcon />
       <div>{upperCaseFirstLetterOfEachWord(description)}</div>
       <Temperature degreesF={temperature} />
     </Card>
