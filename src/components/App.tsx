@@ -1,10 +1,18 @@
+import { useRouter } from "next/router"
 import { useState } from "react"
 
 import BackgroundImage from "@/src/components/BackgroundImage"
 import CityWeather from "@/src/components/CityWeather"
 
 export default function App() {
-  const [city, setCity] = useState<string | null>(null)
+  const { query } = useRouter()
+  const qParam = query.q ? String(query.q) : null
+  // http://localhost:3000/?q=Puerto+Morelos
+  const cityParam = query.city ? String(query.city) : null
+  // https://weather-app-demo-doctorderek.vercel.app/?city=Puerto+Morelos
+  const defaultCity = qParam || cityParam
+  const [city, setCity] = useState<string | null>(defaultCity)
+
   return (
     <>
       <div className="relative z-10 py-2">
