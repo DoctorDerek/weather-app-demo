@@ -12,7 +12,7 @@ export default function Card({
   return (
     <div className="flex flex-col items-center justify-center">
       {/* take advantage of flex-shrink to generate auto-width <Card> */}
-      <div className="flex flex-col items-center justify-center p-4 mt-12 text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
+      <div className="flex flex-col items-center justify-center p-3 mt-12 text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
         <h2
           className={classNames(
             useSmallFont ? "text-base" : "text-xl",
