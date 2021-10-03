@@ -1,10 +1,10 @@
-[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo)](https://weather-app-demo.vercel.app/?app=weather-app-demo) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/master/graph/badge.svg?token=7VDUW7TGZN)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=master)](https://travis-ci.com/DoctorDerek/weather-app-demo)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo-doctorderek)](https://weather-app-demo-doctorderek.vercel.app/?app=weather-app-demo-doctorderek) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/main/graph/badge.svg?token=bEqXKgUSSb)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://app.travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=main)](https://app.travis-ci.com/DoctorDerek/weather-app-demo)
 
 # 📆 Weather App Demo - Next.js 11 + React 17 + Tailwind CSS + 100% Test Coverage
 
-# ✅ Code Repaired by Dr. Derek Austin to Work and Match Design
+# ✅ Code Repaired to Work and Match Design by Dr. Derek Austin
 
-# 👀 View Production Build at https://weather-app-demo.vercel.app
+# 👀 View Production Build at https://weather-app-demo-doctorderek.vercel.app.vercel.app
 
 I repaired [this weather app](https://codesandbox.io/s/blazing-butterfly-6qudf) to actually work and match the design document.
 
@@ -18,11 +18,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 2. ✅ Refactor <CityWeather> to a function component using React Hooks
 
-3. 🟩 Match the design
-
-   - A designer has provided a comp on how this app should look (see design.png)
-     - To match the design you may need to use different fields that are retuned from teh openweathermap API. For example, the weather condition three digit code can be [mapped to the icons here](https://openweathermap.org/weather-conditions)
-   - Tailwindcss is installed and configured for you
+3. ✅ Match the design https://weather-app-demo-doctorderek.vercel.app/design.png
 
 4. 🟩 Improve web accessibility
 
@@ -44,7 +40,7 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 ## Discussion Section
 
-1. ✅ Talk about your changes
+1. ✅ Talk about your changes when fixing the "App crashes on submit" bug
 
    - The bug was caused by the classic JavaScript problem where trying to access properties of `null` or `undefined` throws an error.
 
@@ -52,11 +48,11 @@ Below you will find a complete feature set, discussion section, and technical jo
 
    - In this case, the `weatherResult` was not properly typed, and there was no error handling for `404` errors (`"city not found"`).
 
-   - Before beginning work, I updated all dependencies and added multiple engineering standards, such as ESLint and Prettier.
+   - I prefer building robust components with a variety of guard clauses, so I made the city prop optional in `<CityWeather>`.
 
-   - ESLint helped identify related errors, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
+   - I also identified errors with ESLint, such as `formdata.get("city").toString()` being unsafe vs. `String(formData.get("city"))`.
 
-2. ✅ Talk about your changes
+2. ✅ Talk about your changes when refactoring the `<CityWeather>` component
 
    - Acting like this was a "real" work environment with an "urgent" bugfix, I fixed the bug before refactoring to a function component.
 
@@ -87,5 +83,6 @@ Launches the test runner in the interactive watch mode.
 - `1.3.0` Refactored `<CityWeather>` to function component with `useEffect`
 - `1.4.0` Fixed tests, added loading message, and deployed to Vercel with CI/CD
 - `1.4.1` Reached 100% test coverage by adding `next-page-tester` to test `/`
+- `1.5.0` Implemented design document and developed UX for mobile experience
 - `` Designed animated motion toggle to switch between icons and hours
 - `` Created dark mode for app using Tailwind CSS plus SVG animation toggle
