@@ -1,6 +1,9 @@
 import ImageFixed from "next/image"
 import { useEffect, useState } from "react"
 
+import Card from "@/src/components/Card"
+import Temperature from "@/src/components/Temperature"
+
 // to get api key: https://openweathermap.org/appid
 const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY
 
@@ -39,30 +42,6 @@ export default function CityWeather({ city }: { city?: string }) {
   // Reference: https://openweathermap.org/weather-conditions
   const temperature = KtoF(weatherResult?.main?.temp)
 
-  function Card({
-    children,
-    heading,
-  }: {
-    children: React.ReactNode
-    heading: string
-  }) {
-    return (
-      <div className="flex flex-col items-center justify-center w-64 p-4 mx-auto text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
-        <h2 className="font-bold text-gray-600 uppercase">{heading}</h2>
-        {children}
-      </div>
-    )
-  }
-  function Temperature({ degreesF }: { degreesF: string | number }) {
-    return (
-      <div className="text-xs">
-        Temperature:{" "}
-        <span className="text-3xl font-semibold tracking-tighter text-black">
-          {degreesF} °F
-        </span>
-      </div>
-    )
-  }
   return (
     <Card heading={city}>
       <div className="grid w-24 h-24">
