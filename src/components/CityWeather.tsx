@@ -47,7 +47,7 @@ export default function CityWeather({ city }: { city?: string }) {
     heading: string
   }) {
     return (
-      <div className="flex flex-col items-center justify-center w-64 p-4 mx-auto bg-white rounded-lg shadow-md drop-shadow-md">
+      <div className="flex flex-col items-center justify-center w-64 p-4 mx-auto text-gray-400 bg-white rounded-lg shadow-md drop-shadow-md">
         <h2 className="font-bold text-gray-600 uppercase">{heading}</h2>
         {children}
       </div>
@@ -55,9 +55,9 @@ export default function CityWeather({ city }: { city?: string }) {
   }
   function Temperature({ children }: { children: React.ReactNode }) {
     return (
-      <div className="text-xs text-gray-600">
+      <div className="text-xs">
         Temperature:{" "}
-        <span className="text-2xl font-semibold text-black">
+        <span className="text-3xl font-semibold tracking-tighter text-black">
           {temperature} °F
         </span>
       </div>
