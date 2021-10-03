@@ -40,7 +40,7 @@ test("it shows weather results when clicking the button for 'Memphis'", async ()
     screen.getByText(new RegExp(currentWeatherConditions, "i"))
   ).toBeVisible()
   expect(
-    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}°`, "i"))
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}.*°`, "i"))
   ).toBeVisible()
 })
 

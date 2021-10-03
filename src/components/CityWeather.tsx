@@ -25,9 +25,7 @@ export default function CityWeather({ city }: { city?: string }) {
     return (
       <div>
         <h1>{city}</h1>
-        <div>
-          Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} &#8457;
-        </div>
+        <div>Temperature: {KtoF(weatherResult.main.temp).toFixed(0)} °F</div>
         <div>Description: {weatherResult.weather[0].description}</div>
       </div>
     )
