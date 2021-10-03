@@ -15,7 +15,8 @@ export default function App() {
 
   return (
     <>
-      <div className="relative z-10 pt-8">
+      <div className="relative z-10 flex flex-col justify-end h-screen py-8 sm:justify-start">
+        {/** place the search bar at bottom on mobile for improved UX */}
         <form
           className="flex flex-wrap items-center justify-center"
           onSubmit={(e) => {
