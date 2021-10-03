@@ -32,7 +32,7 @@ export const server = setupServer(
     if (new RegExp("fake", "i").exec(city))
       return res(
         ctx.json({
-          cod: 404,
+          cod: 404, // "NOT FOUND" https://http.cat/404
           message: "city not found",
         })
       )
@@ -48,6 +48,7 @@ export const server = setupServer(
           temp: currentTemperatureInKelvin,
         },
         name: city,
+        cod: 200, // "OK" https://http.cat/200
       })
     )
   })
