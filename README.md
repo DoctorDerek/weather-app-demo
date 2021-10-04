@@ -90,3 +90,4 @@ Launches the test runner in the interactive watch mode.
 - `1.6.0` Improved web accessibility using <label> and aria-live="polite"
 - `1.7.0` Created dark mode for app using Tailwind CSS plus animated SVG toggle
 - `2.0.0` Reached 100% test coverage of lines by testing <ToggleDarkMode>
+- `2.0.1` Hotfix to remove vertical scroll bars on mobile caused by `h-screen`
