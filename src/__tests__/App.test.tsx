@@ -28,6 +28,22 @@ test("it shows nothing when clicking the button for no city", async () => {
   expect(screen.queryByText(/clouds/i)).toBeNull()
 })
 
+test("it has accessible labels and displays results for 'Memphis'", async () => {
+  const city = "Memphis"
+  renderApp()
+  userEvent.type(screen.getByLabelText("search"), city)
+  userEvent.click(screen.getByLabelText("submit"))
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
+  expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(currentWeatherConditions, "i"))
+  ).toBeVisible()
+  expect(
+    screen.getByText(new RegExp(`${currentTemperatureInFahrenheit}.*°`, "i"))
+  ).toBeVisible()
+})
+
 test("it shows weather results when clicking the button for 'Memphis'", async () => {
   const city = "Memphis"
   renderApp()
