@@ -1,3 +1,4 @@
+@import "@/src/css/dark-mode-toggle.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
