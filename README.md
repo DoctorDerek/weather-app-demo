@@ -20,10 +20,12 @@ Below you will find a complete feature set, discussion section, and technical jo
 
 3. ✅ Match the design https://weather-app-demo-doctorderek.vercel.app/design.png
 
-4. 🟩 Improve web accessibility
+4. ✅ Improve web accessibility
 
    - Ensure that clicking on the label "Weather Search" puts focus into the text-input.
+     - _solution:_ `<label htmlFor="city">Weather Search <input type="text" id="city" /></label>`
    - Make sure any loading states are correctly announced to a screen reader
+     - _solution:_ `const Loading = () => (<div aria-live="polite">loading...</div>)`
 
 5. ✅ Make the tests better
 
