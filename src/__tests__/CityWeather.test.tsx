@@ -1,4 +1,7 @@
-import CityWeather, { KtoF } from "@/src/components/CityWeather"
+import CityWeather, {
+  KtoF,
+  upperCaseFirstLetterOfEachWord,
+} from "@/src/components/CityWeather"
 import { server } from "@/src/utils/setup-tests"
 import { render, screen, waitFor } from "@testing-library/react"
 
@@ -17,6 +20,12 @@ function renderCityWeather(city?: string) {
 
 test("KtoF conversion function works correctly", () => {
   expect(KtoF(currentTemperatureInKelvin)).toBe(currentTemperatureInFahrenheit)
+})
+
+test("upperCaseFirstLetterOfEachWord function works correctly", () => {
+  expect(upperCaseFirstLetterOfEachWord()).toBe("")
+  expect(upperCaseFirstLetterOfEachWord("")).toBe("")
+  expect(upperCaseFirstLetterOfEachWord("broken clouds")).toBe("Broken Clouds")
 })
 
 test("<CityWeather> renders nothing with default props", () => {
@@ -44,6 +53,15 @@ test("<CityWeather> renders 'not found' with prop city='FakeCity'", async () => 
   await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
   await waitFor(() => expect(screen.getByText(/not found/i)).toBeVisible())
   expect(screen.getByText(/error/i)).toBeVisible()
+  expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
+  expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
+})
+
+test("<CityWeather> shows error if there is no weather array in the response", async () => {
+  const city = "no weather array"
+  renderCityWeather(city)
+  await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
+  await waitFor(() => expect(screen.getByText(/error/i)).toBeVisible())
   expect(screen.queryByText(new RegExp(city, "i"))).toBeNull()
   expect(screen.queryByText(/Temp/i)).toBeNull() // Temperature
 })
