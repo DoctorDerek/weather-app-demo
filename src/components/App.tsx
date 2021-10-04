@@ -30,9 +30,11 @@ export default function App() {
             setCity(String(formdata.get("city")))
           }}
         >
-          <h1 className="pb-2 text-2xl font-semibold tracking-tight sm:text-base sm:pb-0">
-            Weather Search:
-          </h1>
+          <label htmlFor="city">
+            <h1 className="pb-2 text-2xl font-semibold tracking-tight sm:text-base sm:pb-0">
+              Weather Search:
+            </h1>
+          </label>
           <div className="flex flex-wrap items-center justify-center">
             {/* wrapper div to avoid flex-wrap on mobile */}
             <input
@@ -40,6 +42,7 @@ export default function App() {
               className="w-40 h-10 p-2 ml-2 border border-gray-300 border-solid rounded-l-lg"
               type="text"
               name="city"
+              id="city"
               defaultValue={city || ""}
             />
             <button
