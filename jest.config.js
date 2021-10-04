@@ -26,6 +26,9 @@ const jestConfig = {
   moduleNameMapper: {
     // equivalent to "paths" in tsconfig.json
     "@/src/(.*)": fromRoot("src") + "/$1",
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      fromRoot("src/__mocks__/file-mock.ts"),
+    "\\.(css|less)$": fromRoot("src/__mocks__/file-mock.ts"),
   },
   testEnvironment: "jsdom",
   testURL: "http://localhost",
