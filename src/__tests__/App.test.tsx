@@ -31,8 +31,8 @@ test("it shows nothing when clicking the button for no city", async () => {
 test("it has accessible labels and displays results for 'Memphis'", async () => {
   const city = "Memphis"
   renderApp()
-  userEvent.type(screen.getByLabelText("search"), city)
-  userEvent.click(screen.getByLabelText("submit"))
+  userEvent.type(screen.getByText(/search/i), city)
+  userEvent.click(screen.getByText(/submit/i))
   await waitFor(() => expect(screen.getByText(/loading/i)).toBeVisible())
   await waitFor(() => expect(screen.getByText(/Temp/i)).toBeVisible()) // Temperature
   expect(screen.getByText(new RegExp(city, "i"))).toBeVisible()
