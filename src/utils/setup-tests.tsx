@@ -45,6 +45,14 @@ export const server = setupServer(
         })
       )
     }
+    if (city && new RegExp("no.*weather.*array", "i").exec(city)) {
+      // "FakeCity"
+      return res(
+        ctx.json({
+          weather: "No weather array",
+        })
+      )
+    }
     return res(
       ctx.json({
         weather: [
