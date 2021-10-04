@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 
 import BackgroundImage from "@/src/components/BackgroundImage"
 import CityWeather from "@/src/components/CityWeather"
+import ToggleDarkMode from "@/src/components/ToggleDarkMode"
 
 export default function App() {
   const router = useRouter()
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <>
+      <ToggleDarkMode />
       <div className="relative z-10 flex flex-col justify-end h-screen py-10 sm:justify-start">
         {/** place the search bar at bottom on mobile for improved UX */}
         <form
@@ -31,7 +33,7 @@ export default function App() {
           }}
         >
           <label htmlFor="city">
-            <h1 className="pb-2 text-2xl font-semibold tracking-tight sm:text-base sm:pb-0">
+            <h1 className="px-4 py-1 mb-2 text-2xl font-semibold tracking-tight sm:py-2 sm:text-base sm:mb-0 dark:bg-black rounded-xl">
               Weather Search:
             </h1>
           </label>
