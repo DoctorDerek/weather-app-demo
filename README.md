@@ -1,10 +1,10 @@
-[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo-doctorderek)](https://weather-app-demo-doctorderek.vercel.app/?app=weather-app-demo-doctorderek) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/main/graph/badge.svg?token=bEqXKgUSSb)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://app.travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=main)](https://app.travis-ci.com/DoctorDerek/weather-app-demo)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=weather-app-demo-doctorderek)](https://weather-app-demo-doctorderek.vercel.app/) [![codecov](https://codecov.io/gh/DoctorDerek/weather-app-demo/branch/main/graph/badge.svg?token=bEqXKgUSSb)](https://codecov.io/gh/DoctorDerek/weather-app-demo) [![Build Status](https://app.travis-ci.com/DoctorDerek/weather-app-demo.svg?branch=main)](https://app.travis-ci.com/DoctorDerek/weather-app-demo)
 
 # 📆 Weather App Demo - Next.js 11 + React 17 + Tailwind CSS + 100% Test Coverage
 
 # ✅ Code Repaired to Work and Match Design by Dr. Derek Austin
 
-# 👀 View Production Build at https://weather-app-demo-doctorderek.vercel.app.vercel.app
+# 👀 View Production Build at https://weather-app-demo-doctorderek.vercel.app
 
 I repaired [this weather app](https://codesandbox.io/s/blazing-butterfly-6qudf) to actually work and match the design document.
 
