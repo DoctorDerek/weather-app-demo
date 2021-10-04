@@ -8,7 +8,7 @@
 
 I repaired [this weather app](https://codesandbox.io/s/blazing-butterfly-6qudf) to actually work and match the design document.
 
-Additionally, I added \_\_ other major features, including best practices and extensive test coverage.
+Additionally, I added 7 other major features, including best practices and extensive test coverage (100% of lines).
 
 Below you will find a complete feature set, discussion section, and technical journal.
 
@@ -38,7 +38,8 @@ Below you will find a complete feature set, discussion section, and technical jo
 4. ✅ Crafted unit tests for new code features (TDD / Test Driven Development)
    - Jest + React Testing Library with React Test Renderer
 5. ✅ Wrote unit testing for existing code (16% ➡ 100% test coverage)
-6. 🟩 Developed mobile-first, responsive UX design with Tailwind CSS
+6. ✅ Developed mobile-first, responsive UX design with Tailwind CSS
+7. ✅ Implemented Tailwind CSS dark mode for app with animated SVG toggle
 
 ## Discussion Section
 
@@ -86,5 +87,5 @@ Launches the test runner in the interactive watch mode.
 - `1.4.0` Fixed tests, added loading message, and deployed to Vercel with CI/CD
 - `1.4.1` Reached 100% test coverage by adding `next-page-tester` to test `/`
 - `1.5.0` Implemented design document and developed UX for mobile experience
-- `` Designed animated motion toggle to switch between icons and hours
-- `` Created dark mode for app using Tailwind CSS plus SVG animation toggle
+- `1.6.0` Improved web accessibility using <label> and aria-live="polite"
+- `1.7.0` Created dark mode for app using Tailwind CSS plus animated SVG toggle
